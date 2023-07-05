@@ -24,7 +24,7 @@ unsigned char const C_icon_back_x_bitmap[] = {
 };
 #ifdef HAVE_BAGL
         #include "bagl.h"
-        const bagl_icon_details_t C_icon_back_x = { GLYPH_icon_back_x_WIDTH, GLYPH_icon_back_x_HEIGHT, 1, C_icon_back_x_colors, C_icon_back_x_bitmap };
+        const bagl_icon_details_t C_icon_back_x = { GLYPH_icon_back_x_WIDTH, GLYPH_icon_back_x_HEIGHT, 1, C_icon_back_colors, C_icon_back_x_bitmap };
         #endif // HAVE_BAGL
 #include "glyphs.h"
 unsigned int const C_icon_certificate_colors[] = {
@@ -38,7 +38,7 @@ unsigned char const C_icon_certificate_bitmap[] = {
 };
 #ifdef HAVE_BAGL
         #include "bagl.h"
-        const bagl_icon_details_t C_icon_certificate = { GLYPH_icon_certificate_WIDTH, GLYPH_icon_certificate_HEIGHT, 1, C_icon_certificate_colors, C_icon_certificate_bitmap };
+        const bagl_icon_details_t C_icon_certificate = { GLYPH_icon_certificate_WIDTH, GLYPH_icon_certificate_HEIGHT, 1, C_icon_back_colors, C_icon_certificate_bitmap };
         #endif // HAVE_BAGL
 #include "glyphs.h"
 unsigned int const C_icon_coggle_colors[] = {
@@ -52,7 +52,7 @@ unsigned char const C_icon_coggle_bitmap[] = {
 };
 #ifdef HAVE_BAGL
         #include "bagl.h"
-        const bagl_icon_details_t C_icon_coggle = { GLYPH_icon_coggle_WIDTH, GLYPH_icon_coggle_HEIGHT, 1, C_icon_coggle_colors, C_icon_coggle_bitmap };
+        const bagl_icon_details_t C_icon_coggle = { GLYPH_icon_coggle_WIDTH, GLYPH_icon_coggle_HEIGHT, 1, C_icon_back_colors, C_icon_coggle_bitmap };
         #endif // HAVE_BAGL
 #include "glyphs.h"
 unsigned int const C_icon_crossmark_colors[] = {
@@ -66,7 +66,7 @@ unsigned char const C_icon_crossmark_bitmap[] = {
 };
 #ifdef HAVE_BAGL
         #include "bagl.h"
-        const bagl_icon_details_t C_icon_crossmark = { GLYPH_icon_crossmark_WIDTH, GLYPH_icon_crossmark_HEIGHT, 1, C_icon_crossmark_colors, C_icon_crossmark_bitmap };
+        const bagl_icon_details_t C_icon_crossmark = { GLYPH_icon_crossmark_WIDTH, GLYPH_icon_crossmark_HEIGHT, 1, C_icon_back_colors, C_icon_crossmark_bitmap };
         #endif // HAVE_BAGL
 #include "glyphs.h"
 unsigned int const C_icon_dashboard_colors[] = {
@@ -80,7 +80,7 @@ unsigned char const C_icon_dashboard_bitmap[] = {
 };
 #ifdef HAVE_BAGL
         #include "bagl.h"
-        const bagl_icon_details_t C_icon_dashboard = { GLYPH_icon_dashboard_WIDTH, GLYPH_icon_dashboard_HEIGHT, 1, C_icon_dashboard_colors, C_icon_dashboard_bitmap };
+        const bagl_icon_details_t C_icon_dashboard = { GLYPH_icon_dashboard_WIDTH, GLYPH_icon_dashboard_HEIGHT, 1, C_icon_back_colors, C_icon_dashboard_bitmap };
         #endif // HAVE_BAGL
 #include "glyphs.h"
 unsigned int const C_icon_dashboard_x_colors[] = {
@@ -94,7 +94,7 @@ unsigned char const C_icon_dashboard_x_bitmap[] = {
 };
 #ifdef HAVE_BAGL
         #include "bagl.h"
-        const bagl_icon_details_t C_icon_dashboard_x = { GLYPH_icon_dashboard_x_WIDTH, GLYPH_icon_dashboard_x_HEIGHT, 1, C_icon_dashboard_x_colors, C_icon_dashboard_x_bitmap };
+        const bagl_icon_details_t C_icon_dashboard_x = { GLYPH_icon_dashboard_x_WIDTH, GLYPH_icon_dashboard_x_HEIGHT, 1, C_icon_back_colors, C_icon_dashboard_x_bitmap };
         #endif // HAVE_BAGL
 #include "glyphs.h"
 unsigned int const C_icon_down_colors[] = {
@@ -107,7 +107,7 @@ unsigned char const C_icon_down_bitmap[] = {
 };
 #ifdef HAVE_BAGL
         #include "bagl.h"
-        const bagl_icon_details_t C_icon_down = { GLYPH_icon_down_WIDTH, GLYPH_icon_down_HEIGHT, 1, C_icon_down_colors, C_icon_down_bitmap };
+        const bagl_icon_details_t C_icon_down = { GLYPH_icon_down_WIDTH, GLYPH_icon_down_HEIGHT, 1, C_icon_back_colors, C_icon_down_bitmap };
         #endif // HAVE_BAGL
 #include "glyphs.h"
 unsigned int const C_icon_eye_colors[] = {
@@ -121,7 +121,7 @@ unsigned char const C_icon_eye_bitmap[] = {
 };
 #ifdef HAVE_BAGL
         #include "bagl.h"
-        const bagl_icon_details_t C_icon_eye = { GLYPH_icon_eye_WIDTH, GLYPH_icon_eye_HEIGHT, 1, C_icon_eye_colors, C_icon_eye_bitmap };
+        const bagl_icon_details_t C_icon_eye = { GLYPH_icon_eye_WIDTH, GLYPH_icon_eye_HEIGHT, 1, C_icon_back_colors, C_icon_eye_bitmap };
         #endif // HAVE_BAGL
 #include "glyphs.h"
 unsigned int const C_icon_left_colors[] = {
@@ -134,7 +134,7 @@ unsigned char const C_icon_left_bitmap[] = {
 };
 #ifdef HAVE_BAGL
         #include "bagl.h"
-        const bagl_icon_details_t C_icon_left = { GLYPH_icon_left_WIDTH, GLYPH_icon_left_HEIGHT, 1, C_icon_left_colors, C_icon_left_bitmap };
+        const bagl_icon_details_t C_icon_left = { GLYPH_icon_left_WIDTH, GLYPH_icon_left_HEIGHT, 1, C_icon_back_colors, C_icon_left_bitmap };
         #endif // HAVE_BAGL
 #include "glyphs.h"
 unsigned int const C_icon_processing_colors[] = {
@@ -148,7 +148,7 @@ unsigned char const C_icon_processing_bitmap[] = {
 };
 #ifdef HAVE_BAGL
         #include "bagl.h"
-        const bagl_icon_details_t C_icon_processing = { GLYPH_icon_processing_WIDTH, GLYPH_icon_processing_HEIGHT, 1, C_icon_processing_colors, C_icon_processing_bitmap };
+        const bagl_icon_details_t C_icon_processing = { GLYPH_icon_processing_WIDTH, GLYPH_icon_processing_HEIGHT, 1, C_icon_back_colors, C_icon_processing_bitmap };
         #endif // HAVE_BAGL
 #include "glyphs.h"
 unsigned int const C_icon_right_colors[] = {
@@ -161,7 +161,7 @@ unsigned char const C_icon_right_bitmap[] = {
 };
 #ifdef HAVE_BAGL
         #include "bagl.h"
-        const bagl_icon_details_t C_icon_right = { GLYPH_icon_right_WIDTH, GLYPH_icon_right_HEIGHT, 1, C_icon_right_colors, C_icon_right_bitmap };
+        const bagl_icon_details_t C_icon_right = { GLYPH_icon_right_WIDTH, GLYPH_icon_right_HEIGHT, 1, C_icon_back_colors, C_icon_right_bitmap };
         #endif // HAVE_BAGL
 #include "glyphs.h"
 unsigned int const C_icon_up_colors[] = {
@@ -174,7 +174,7 @@ unsigned char const C_icon_up_bitmap[] = {
 };
 #ifdef HAVE_BAGL
         #include "bagl.h"
-        const bagl_icon_details_t C_icon_up = { GLYPH_icon_up_WIDTH, GLYPH_icon_up_HEIGHT, 1, C_icon_up_colors, C_icon_up_bitmap };
+        const bagl_icon_details_t C_icon_up = { GLYPH_icon_up_WIDTH, GLYPH_icon_up_HEIGHT, 1, C_icon_back_colors, C_icon_up_bitmap };
         #endif // HAVE_BAGL
 #include "glyphs.h"
 unsigned int const C_icon_validate_14_colors[] = {
@@ -188,7 +188,7 @@ unsigned char const C_icon_validate_14_bitmap[] = {
 };
 #ifdef HAVE_BAGL
         #include "bagl.h"
-        const bagl_icon_details_t C_icon_validate_14 = { GLYPH_icon_validate_14_WIDTH, GLYPH_icon_validate_14_HEIGHT, 1, C_icon_validate_14_colors, C_icon_validate_14_bitmap };
+        const bagl_icon_details_t C_icon_validate_14 = { GLYPH_icon_validate_14_WIDTH, GLYPH_icon_validate_14_HEIGHT, 1, C_icon_back_colors, C_icon_validate_14_bitmap };
         #endif // HAVE_BAGL
 #include "glyphs.h"
 unsigned int const C_icon_warning_colors[] = {
@@ -202,5 +202,5 @@ unsigned char const C_icon_warning_bitmap[] = {
 };
 #ifdef HAVE_BAGL
         #include "bagl.h"
-        const bagl_icon_details_t C_icon_warning = { GLYPH_icon_warning_WIDTH, GLYPH_icon_warning_HEIGHT, 1, C_icon_warning_colors, C_icon_warning_bitmap };
+        const bagl_icon_details_t C_icon_warning = { GLYPH_icon_warning_WIDTH, GLYPH_icon_warning_HEIGHT, 1, C_icon_back_colors, C_icon_warning_bitmap };
         #endif // HAVE_BAGL

@@ -11,6 +11,16 @@ const abisPath = 'harvest/abis/';
 const b2cFile = 'harvest/b2c';
 const contractsInfoFile = '../src/contracts-info.txt';
 
+function getWidoRouter() {
+  return {
+    "address": "0x7fb69e8fb1525ceec03783ffd8a317bafbdfd394",
+    "contractName": "WidoRouter",
+    "selectors": {
+        "0x916a3bd9": {"erc20OfInterest": [],"method": "executeOrder","plugin": "Harvest"}
+    }
+  }
+}
+
 function b2cTemplate(chainId, contracts) {
   return {
     "chainId": chainId,
@@ -94,7 +104,8 @@ async function updateContractsForNetwork(chainId, vaults) {
       contractsInfo.push(contractsInfoPoolTemplate(vault));
     }
   }
-
+  if (chainId === 1)
+    contracts.push(getWidoRouter());
   saveB2C(b2cFile, contracts, chainId);
 }
 
