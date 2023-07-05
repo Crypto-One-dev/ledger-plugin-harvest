@@ -46,7 +46,7 @@ typedef struct context_t {
     char vault_ticker[MAX_TICKER_LEN];
     uint8_t vault_decimals;
 
-    const from_address[STR_ADDRESS_LENGTH];
+    char from_address[STR_ADDRESS_LENGTH];
     
     uint8_t from_amount[INT256_LENGTH];
 
