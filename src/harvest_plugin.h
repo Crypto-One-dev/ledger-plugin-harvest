@@ -6,7 +6,6 @@
 
 // Number of selectors defined in this plugin. Should match the enum `selector_t`.
 #define NUM_SELECTORS      6
-#define STR_ADDRESS_LENGTH 43
 
 // Name of the plugin.
 #define PLUGIN_NAME "Harvest"
@@ -38,7 +37,7 @@ typedef struct context_t {
     // For display.
     uint8_t amount[INT256_LENGTH];
 
-    char contract_address[STR_ADDRESS_LENGTH];
+    uint8_t contract_address[ADDRESS_LENGTH];
 
     char underlying_ticker[MAX_TICKER_LEN];
     uint8_t underlying_decimals;
@@ -46,7 +45,7 @@ typedef struct context_t {
     char vault_ticker[MAX_TICKER_LEN];
     uint8_t vault_decimals;
 
-    char from_address[STR_ADDRESS_LENGTH];
+    char from_address[ADDRESS_LENGTH];
     
     uint8_t from_amount[INT256_LENGTH];
 
