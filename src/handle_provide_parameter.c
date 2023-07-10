@@ -19,7 +19,7 @@ static void handle_execute_order(ethPluginProvideParameter_t *msg, context_t *co
         case FROM_ADDRESS:
             copy_address(context->from_address, msg->parameter, sizeof(context->from_address));
             context->next_param = FROM_AMOUNT;
-            printf_hex_array("FROM_AMOUNT: ", ADDRESS_LENGTH, context->from_address);
+            printf_hex_array("FROM_ADDRESS: ", ADDRESS_LENGTH, context->from_address);
             break;
         case FROM_AMOUNT:
             copy_parameter(context->from_amount, msg->parameter, sizeof(context->from_amount));
