@@ -30,6 +30,7 @@ typedef enum {
 #define INIT_EXECUTE     1
 #define FROM_ADDRESS     10  // Address of the token the user is sending.
 #define FROM_AMOUNT 11  // Amount sent by the user to the contract
+#define OFFSET_FROM_ADDRESS 1280
 
 extern const uint32_t HARVEST_SELECTORS[NUM_SELECTORS];
 
@@ -55,6 +56,8 @@ typedef struct context_t {
 
     // For both parsing and display.
     selector_t selectorIndex;
+
+    bool go_to_offset;
 } context_t;
 
 // Piece of code that will check that the above structure is not bigger than 5 * 32. Do not remove

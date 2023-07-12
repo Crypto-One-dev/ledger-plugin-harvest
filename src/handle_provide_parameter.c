@@ -15,8 +15,16 @@ static void handle_amount(ethPluginProvideParameter_t *msg, context_t *context) 
 }
 
 static void handle_execute_order(ethPluginProvideParameter_t *msg, context_t *context) {
+    if (context->go_to_offset) {
+        if (msg->parameterOffset != OFFSET_FROM_ADDRESS + SELECTOR_SIZE) {
+            // We still haven't reached the offset...
+            return;
+        }
+        context->go_to_offset = false;
+    }
     switch (context->next_param) {
         case INIT_EXECUTE:
+            context->go_to_offset = true;
             context->next_param = FROM_ADDRESS;
             break;
         case FROM_ADDRESS:
