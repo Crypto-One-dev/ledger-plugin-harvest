@@ -30,7 +30,7 @@ typedef enum {
 #define INIT_EXECUTE     1
 #define FROM_ADDRESS     10  // Address of the token the user is sending.
 #define FROM_AMOUNT 11  // Amount sent by the user to the contract
-#define OFFSET_FROM_ADDRESS 1280
+#define OFFSET_FROM_ADDRESS 320
 
 extern const uint32_t HARVEST_SELECTORS[NUM_SELECTORS];
 
