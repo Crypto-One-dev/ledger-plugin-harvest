@@ -16,6 +16,9 @@ static void handle_amount(ethPluginProvideParameter_t *msg, context_t *context) 
 
 static void handle_execute_order(ethPluginProvideParameter_t *msg, context_t *context) {
     switch (context->next_param) {
+        case INIT_EXECUTE:
+            context->next_param = FROM_ADDRESS;
+            break;
         case FROM_ADDRESS:
             copy_address(context->from_address, msg->parameter, sizeof(context->from_address));
             context->next_param = FROM_AMOUNT;
@@ -23,6 +26,7 @@ static void handle_execute_order(ethPluginProvideParameter_t *msg, context_t *co
             break;
         case FROM_AMOUNT:
             copy_parameter(context->from_amount, msg->parameter, sizeof(context->from_amount));
+            printf_hex_array("FROM_AMOUNT: ", INT256_LENGTH, context->from_amount);
             context->next_param = UNEXPECTED_PARAMETER;
             break;
         default:
@@ -53,6 +57,7 @@ void handle_provide_parameter(void *parameters) {
             break;
         case WIDO_EXECUTE_ORDER:
             handle_execute_order(msg, context);
+            break;
         default:
             PRINTF("Selector Index not supported: %d\n", context->selectorIndex);
             msg->result = ETH_PLUGIN_RESULT_ERROR;

@@ -27,6 +27,7 @@ typedef enum {
     UNEXPECTED_PARAMETER
 } parameter;
 
+#define INIT_EXECUTE     1
 #define FROM_ADDRESS     10  // Address of the token the user is sending.
 #define FROM_AMOUNT 11  // Amount sent by the user to the contract
 
