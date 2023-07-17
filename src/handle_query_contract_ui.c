@@ -16,18 +16,31 @@ static void set_amount(ethQueryContractUI_t *msg, const context_t *context) {
             decimals = context->vault_decimals;
             ticker = context->vault_ticker;
             break;
+        case WIDO_EXECUTE_ORDER:
+            decimals = context->from_address_decimals;
+            ticker = context->from_address_ticker;
+            break;
         default:
             PRINTF("Selector Index not supported: %d\n", context->selectorIndex);
             msg->result = ETH_PLUGIN_RESULT_ERROR;
             return;
     }
-
-    amountToString(context->amount,
+    
+    if (context->selectorIndex == WIDO_EXECUTE_ORDER) {
+        amountToString(context->from_amount,
+                   sizeof(context->from_amount),
+                   decimals,
+                   ticker,
+                   msg->msg,
+                   msg->msgLength);
+    } else {
+        amountToString(context->amount,
                    sizeof(context->amount),
                    decimals,
                    ticker,
                    msg->msg,
                    msg->msgLength);
+    }
 }
 
 static void set_destination_ui(ethQueryContractUI_t *msg, context_t *context) {
@@ -37,7 +50,8 @@ static void set_destination_ui(ethQueryContractUI_t *msg, context_t *context) {
             strlcpy(msg->title, "Vault", msg->titleLength);
             break;
         case WIDO_EXECUTE_ORDER:
-            strlcpy(msg->title, "Wido", msg->titleLength);
+            strlcpy(msg->title, "Wido From Token", msg->titleLength);
+            break;
         default:
             strlcpy(msg->title, "Pool", msg->titleLength);
             break;
@@ -50,10 +64,17 @@ static void set_destination_ui(ethQueryContractUI_t *msg, context_t *context) {
 
     uint64_t chainId = 0;
 
-    getEthAddressStringFromBinary(msg->pluginSharedRO->txContent->destination,
+    if (context->selectorIndex == WIDO_EXECUTE_ORDER) {
+        getEthAddressStringFromBinary(context->from_address,
                                   m + 2,  // +2 here because we've already prefixed with '0x'.
                                   msg->pluginSharedRW->sha3,
                                   chainId);
+    } else {
+        getEthAddressStringFromBinary(msg->pluginSharedRO->txContent->destination,
+                                  m + 2,  // +2 here because we've already prefixed with '0x'.
+                                  msg->pluginSharedRW->sha3,
+                                  chainId);
+    }
 }
 
 void handle_query_contract_ui(void *parameters) {

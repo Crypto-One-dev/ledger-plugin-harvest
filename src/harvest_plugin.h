@@ -10,6 +10,9 @@
 // Name of the plugin.
 #define PLUGIN_NAME "Harvest"
 
+// Zero Address
+#define ZERO_ADDRESS "0x0000000000000000000000000000000000000000"
+
 // Enumeration of the different selectors possible.
 // Should follow the exact same order as the array declared in contract.c
 typedef enum {
@@ -47,8 +50,10 @@ typedef struct context_t {
     char vault_ticker[MAX_TICKER_LEN];
     uint8_t vault_decimals;
 
-    char from_address[ADDRESS_LENGTH];
-    
+    uint8_t from_address[ADDRESS_LENGTH];
+    char from_address_ticker[MAX_TICKER_LEN];
+    uint8_t from_address_decimals;
+
     uint8_t from_amount[INT256_LENGTH];
 
     // For parsing data.

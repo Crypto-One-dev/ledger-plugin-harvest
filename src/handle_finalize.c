@@ -42,28 +42,60 @@ void handle_finalize(void *parameters) {
     addr[0] = '0';
     addr[1] = 'x';
 
+    // Fill context wido from token ticker/decimals
+    char *addr1 = context->contract_address;
+    addr1[0] = '0';
+    addr1[1] = 'x';
+
     uint64_t chainId = 0;
-    getEthAddressStringFromBinary(msg->pluginSharedRO->txContent->destination,
-                                  addr + 2,  // +2 here because we've already prefixed with '0x'.
-                                  msg->pluginSharedRW->sha3,
-                                  chainId);
-    PRINTF("MSG Address: %s\n", addr);
 
-    contract_info_t *info = find_contract_info(addr);
+    if (selectorIndex != WIDO_EXECUTE_ORDER) {
+        getEthAddressStringFromBinary(msg->pluginSharedRO->txContent->destination,
+                                    addr + 2,  // +2 here because we've already prefixed with '0x'.
+                                    msg->pluginSharedRW->sha3,
+                                    chainId);
+        PRINTF("MSG Address: %s\n", addr);
 
-    if (info == NULL) {  // if contract info is not found
-        msg->result = ETH_PLUGIN_RESULT_UNAVAILABLE;
+        contract_info_t *info = find_contract_info(addr);
 
+        if (info == NULL) {  // if contract info is not found
+            msg->result = ETH_PLUGIN_RESULT_UNAVAILABLE;
+
+        } else {
+            strlcpy(context->underlying_ticker,
+                    (char *) PIC(info->underlying_ticker),
+                    sizeof(context->underlying_ticker));
+            context->underlying_decimals = info->underlying_decimals;
+            strlcpy(context->vault_ticker,
+                    (char *) PIC(info->vault_ticker),
+                    sizeof(context->vault_ticker));
+            context->vault_decimals = info->vault_decimals;
+
+            msg->uiType = ETH_UI_TYPE_GENERIC;
+            msg->result = ETH_PLUGIN_RESULT_OK;
+        }
     } else {
-        strlcpy(context->underlying_ticker,
-                (char *) PIC(info->underlying_ticker),
-                sizeof(context->underlying_ticker));
-        context->underlying_decimals = info->underlying_decimals;
-        strlcpy(context->vault_ticker,
-                (char *) PIC(info->vault_ticker),
-                sizeof(context->vault_ticker));
-        context->vault_decimals = info->vault_decimals;
+        getEthAddressStringFromBinary(context->from_address,
+                                    addr1 + 2,  // +2 here because we've already prefixed with '0x'.
+                                    msg->pluginSharedRW->sha3,
+                                    chainId);
 
+        contract_info_t *info = find_contract_info(addr1);
+
+        if (info == NULL) {  // if contract info is not found
+            if(addr1 == ZERO_ADDRESS) { // if addr1 is zero address then it's ETH
+                strlcpy(context->from_address_ticker, "ETH", sizeof(context->from_address_ticker));
+            } else {
+                strlcpy(context->from_address_ticker, "???", sizeof(context->from_address_ticker));
+            }
+            context->from_address_decimals = 18;
+        } else {
+            strlcpy(context->from_address_ticker,
+                    (char *) PIC(info->underlying_ticker),
+                    sizeof(context->underlying_ticker));
+            context->from_address_decimals = info->underlying_decimals;
+
+        }
         msg->uiType = ETH_UI_TYPE_GENERIC;
         msg->result = ETH_PLUGIN_RESULT_OK;
     }
