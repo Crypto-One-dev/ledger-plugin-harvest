@@ -50,7 +50,7 @@ static void set_destination_ui(ethQueryContractUI_t *msg, context_t *context) {
             strlcpy(msg->title, "Vault", msg->titleLength);
             break;
         case WIDO_EXECUTE_ORDER:
-            strlcpy(msg->title, "Wido From Token", msg->titleLength);
+            strlcpy(msg->title, "From Token", msg->titleLength);
             break;
         default:
             strlcpy(msg->title, "Pool", msg->titleLength);

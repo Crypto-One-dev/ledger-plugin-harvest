@@ -43,9 +43,9 @@ void handle_finalize(void *parameters) {
     addr[1] = 'x';
 
     // Fill context wido from token ticker/decimals
-    char *addr1 = context->contract_address;
-    addr1[0] = '0';
-    addr1[1] = 'x';
+    char *from_addr = context->contract_address;
+    from_addr[0] = '0';
+    from_addr[1] = 'x';
 
     uint64_t chainId = 0;
 
@@ -76,14 +76,14 @@ void handle_finalize(void *parameters) {
         }
     } else {
         getEthAddressStringFromBinary(context->from_address,
-                                    addr1 + 2,  // +2 here because we've already prefixed with '0x'.
+                                    from_addr + 2,  // +2 here because we've already prefixed with '0x'.
                                     msg->pluginSharedRW->sha3,
                                     chainId);
 
-        contract_info_t *info = find_contract_info(addr1);
+        contract_info_t *info = find_contract_info(from_addr);
 
         if (info == NULL) {  // if contract info is not found
-            if(addr1 == ZERO_ADDRESS) { // if addr1 is zero address then it's ETH
+            if(from_addr == ZERO_ADDRESS) { // if from_addr is zero address then it's ETH
                 strlcpy(context->from_address_ticker, "ETH", sizeof(context->from_address_ticker));
             } else {
                 strlcpy(context->from_address_ticker, "???", sizeof(context->from_address_ticker));
