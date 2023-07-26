@@ -42,11 +42,6 @@ void handle_finalize(void *parameters) {
     addr[0] = '0';
     addr[1] = 'x';
 
-    // Fill context wido from token ticker/decimals
-    char *from_addr = context->contract_address;
-    from_addr[0] = '0';
-    from_addr[1] = 'x';
-
     uint64_t chainId = 0;
 
     if (selectorIndex != WIDO_EXECUTE_ORDER) {
@@ -75,27 +70,6 @@ void handle_finalize(void *parameters) {
             msg->result = ETH_PLUGIN_RESULT_OK;
         }
     } else {
-        getEthAddressStringFromBinary(context->from_address,
-                                    from_addr + 2,  // +2 here because we've already prefixed with '0x'.
-                                    msg->pluginSharedRW->sha3,
-                                    chainId);
-
-        contract_info_t *info = find_contract_info(from_addr);
-
-        if (info == NULL) {  // if contract info is not found
-            if(from_addr == ZERO_ADDRESS) { // if from_addr is zero address then it's ETH
-                strlcpy(context->from_address_ticker, "ETH", sizeof(context->from_address_ticker));
-            } else {
-                strlcpy(context->from_address_ticker, "???", sizeof(context->from_address_ticker));
-            }
-            context->from_address_decimals = 18;
-        } else {
-            strlcpy(context->from_address_ticker,
-                    (char *) PIC(info->underlying_ticker),
-                    sizeof(context->underlying_ticker));
-            context->from_address_decimals = info->underlying_decimals;
-
-        }
         msg->uiType = ETH_UI_TYPE_GENERIC;
         msg->result = ETH_PLUGIN_RESULT_OK;
     }
