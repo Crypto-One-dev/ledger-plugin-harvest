@@ -52,6 +52,7 @@ void handle_init_contract(void *parameters) {
             break;
         case WIDO_EXECUTE_ORDER:
             context->next_param = FROM_ADDRESS;
+            break;
         case POOL_GET_REWARD:
         case POOL_EXIT:
             context->next_param = UNEXPECTED_PARAMETER;

@@ -4,8 +4,6 @@ void handle_provide_token(void *parameters) {
     ethPluginProvideInfo_t *msg = (ethPluginProvideInfo_t *) parameters;
     context_t *context = (context_t *) msg->pluginContext;
 
-    PRINTF("Wido plugin provide token: 0x%p\n", msg->item1);
-
     // Fill context wido from token ticker/decimals
     char *from_addr = context->contract_address;
     from_addr[0] = '0';

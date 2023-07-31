@@ -38,20 +38,23 @@ void handle_finalize(void *parameters) {
     msg->numScreens = selectorIndex == POOL_GET_REWARD || selectorIndex == POOL_EXIT ? 1 : 2;
 
     // Fill context underlying and vault ticker/decimals
-    char *addr = context->contract_address;
-    addr[0] = '0';
-    addr[1] = 'x';
-
-    uint64_t chainId = 0;
 
     if (selectorIndex != WIDO_EXECUTE_ORDER) {
-        getEthAddressStringFromBinary(msg->pluginSharedRO->txContent->destination,
-                                    addr + 2,  // +2 here because we've already prefixed with '0x'.
-                                    msg->pluginSharedRW->sha3,
-                                    chainId);
+        char *addr = context->contract_address;
+        addr[0] = '0';
+        addr[1] = 'x';
+
+        uint64_t chainId = 0;
+
+        getEthAddressStringFromBinary(
+            msg->pluginSharedRO->txContent->destination,
+            addr + 2,  // +2 here because we've already prefixed with '0x'.
+            msg->pluginSharedRW->sha3,
+            chainId);
         PRINTF("MSG Address: %s\n", addr);
 
         contract_info_t *info = find_contract_info(addr);
+        msg->tokenLookup1 = NULL;
 
         if (info == NULL) {  // if contract info is not found
             msg->result = ETH_PLUGIN_RESULT_UNAVAILABLE;
@@ -70,6 +73,7 @@ void handle_finalize(void *parameters) {
             msg->result = ETH_PLUGIN_RESULT_OK;
         }
     } else {
+        msg->tokenLookup1 = context->from_address;
         msg->uiType = ETH_UI_TYPE_GENERIC;
         msg->result = ETH_PLUGIN_RESULT_OK;
     }

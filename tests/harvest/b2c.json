@@ -1354,7 +1354,9 @@
 			"contractName": "WidoRouter",
 			"selectors": {
 				"0x916a3bd9": {
-					"erc20OfInterest": [],
+					"erc20OfInterest": [
+						"route.fromToken"
+					],
 					"method": "executeOrder",
 					"plugin": "Harvest"
 				}
